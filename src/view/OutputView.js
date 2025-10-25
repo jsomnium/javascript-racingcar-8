@@ -11,7 +11,7 @@ class OutputView {
   }
 
   printWinners(winners) {
-    Console.print(Message.WINNER_PREFIX, winners);
+    Console.print(Message.WINNER_PREFIX + winners);
   }
 }
 
