@@ -9,6 +9,10 @@ class OutputView {
   printResult() {
     Console.print(Message.RESULT_PROMPT);
   }
+
+  printWinners(winners) {
+    Console.print(Message.WINNER_PREFIX, winners);
+  }
 }
 
 export default OutputView;

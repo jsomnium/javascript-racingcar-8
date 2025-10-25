@@ -1,4 +1,4 @@
-import RaceController from './Controller/RaceController.js';
+import RaceController from "./controller/RaceController.js";
 
 class App {
   // 입력받은 이름 기반으로 자동차 클래스들 생성

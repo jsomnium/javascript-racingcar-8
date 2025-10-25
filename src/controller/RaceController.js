@@ -41,7 +41,7 @@ class RaceController {
         });
 
         if (round == 0) {
-          this.#outputView.printResult(); // 한 줄 띄우기
+          this.#outputView.printResult();
         }
 
         const roundOutput = formattedResult.map(car => `${car.name} : ${car.position}`).join('\n');
@@ -49,6 +49,9 @@ class RaceController {
       }
 
       // 우승자 발표
+      const winners = this.#race.getWinners();
+      const winnerNames = winners.join(', ');
+      this.#outputView.printWinners(winnerNames);
     } catch (error) {
       // 에러 처리
     }
