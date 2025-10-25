@@ -7,7 +7,7 @@ class InputView {
     return inputString;
   }
 
-  async inputRounds() {
+  async inputRound() {
     const roundsString = await Console.readLineAsync(Message.ROUNDS_PROMPT);
     return roundsString;
   }
