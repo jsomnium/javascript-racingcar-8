@@ -11,7 +11,7 @@ class App {
   // 모든 자동차의 이동이 끝나면 최종 위치를 기반으로 우승자 발표
   async run() {
     const raceController = new RaceController();
-    await raceController.start();
+    await raceController.startRace();
   }
 }
 

@@ -1,19 +1,23 @@
 import { Random } from "@woowacourse/mission-utils";
+import { MOVE_THRESHOLD } from "../constant/index.js";
+import { NUMBER_RANGE } from "../constant/index.js";
 
 class Race {
   #cars;
+  #round;
 
-  addCars(cars) {
+  constructor(cars = []) {
     this.#cars = cars;
+    this.#round = 0;
   }
 
   #canMove() {
-    const randomNumber = Random.pickNumberInRange(0, 9);
-    return randomNumber >= 4;
+    const randomNumber = Random.pickNumberInRange(NUMBER_RANGE.MIN, NUMBER_RANGE.MAX);
+    return randomNumber >= MOVE_THRESHOLD;
   }
 
   playRound() {
-    this.#cars.map(car => {
+    this.#cars.forEach(car => {
       if (this.#canMove()) {
         car.move();
       }
@@ -22,6 +26,10 @@ class Race {
 
   getCars() {
     return this.#cars;
+  }
+
+  getRound() {
+    return this.#round;
   }
 
   getWinners() {

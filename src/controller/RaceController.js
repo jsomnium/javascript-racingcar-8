@@ -12,43 +12,49 @@ class RaceController {
   constructor() {
     this.#inputView = new InputView();
     this.#outputView = new OutputView();
-    this.#race = new Race();
   }
 
-  async start() {
+  async startRace() {
     try {
-      // 사용자에게 자동차 이름 입력 받기
-      const inputName = await this.#inputView.inputName();
-      const splitNames = inputName.split(',');
-      Validator.validateCarNames(splitNames);
-
-      // 사용자에게 경주 횟수 입력 받기
-      const inputRound = await this.#inputView.inputRound();
-      Validator.validateRound(inputRound);
-    
-      // 입력받은 자동차 이름을 분리하여 Race 모델에 전달
-      const cars = splitNames.map(name => new Car(name));
-      this.#race.addCars(cars);
-    
-      // 경주 시작
-      for (let round = 0; round < inputRound; round++) {
-        this.#race.playRound();
-        const roundResult = this.#race.getCars();
-
-        if (round == 0) {
-          this.#outputView.printResult();
-        }
-        this.#outputView.printRound(roundResult); // 출력
-      }
-
-      // 우승자 발표
-      const winners = this.#race.getWinners();
-      const winnerNames = winners.join(', ');
-      this.#outputView.printWinners(winnerNames);
+      await this.#setupRace();
+      this.#runRace();
+      this.#showWinners();
     } catch (error) {
       this.#outputView.printError(error.message);
       throw error;
     }
+  }
+
+  async #setupRace() {
+    // 사용자에게 자동차 이름 입력 받기
+    const inputName = await this.#inputView.inputName();
+    const splitNames = inputName.split(',');
+    Validator.validateCarNames(splitNames);
+
+    // 입력받은 자동차 이름을 분리
+    const cars = splitNames.map(name => new Car(name));
+    this.#race = new Race(cars);
+
+    // 사용자에게 경주 횟수 입력 받기
+    const inputRound = await this.#inputView.inputRound();
+    Validator.validateRound(inputRound);
+  }
+
+  #runRace() {
+    // 경주 시작
+    this.#outputView.printResultMessage();
+    for (let round = 0; round < this.#race.getRound(); round++) {
+      this.#race.playRound();
+      const roundResult = this.#race.getCars();
+      this.#outputView.printRound(roundResult); // 출력
+    }
+  }
+
+  #showWinners() {
+    // 우승자 발표
+    const winners = this.#race.getWinners();
+    const winnerNames = winners.join(', ');
+    this.#outputView.printWinners(winnerNames);
   }
 }
 

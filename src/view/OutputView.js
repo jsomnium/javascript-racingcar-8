@@ -10,7 +10,7 @@ class OutputView {
     Console.print(roundOutput + '\n');
   }
 
-  printResult() {
+  printResultMessage() {
     Console.print(Message.RESULT_PROMPT);
   }
 

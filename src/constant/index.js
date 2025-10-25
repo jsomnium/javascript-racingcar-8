@@ -10,3 +10,10 @@ export const Message = {
     NOT_ALLOW_NEGATIVE: '시도 횟수는 1 이상이어야 합니다.',
     NOT_ALLOW_RATIONAL: '시도 횟수는 정수여야 합니다.',
 };
+
+export const NUMBER_RANGE = {
+    MIN: 0,
+    MAX: 9,
+};
+
+export const MOVE_THRESHOLD = 4;
