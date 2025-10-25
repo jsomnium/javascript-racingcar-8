@@ -21,7 +21,7 @@ class RaceController {
       const inputName = await this.#inputView.inputName();
       const splitNames = inputName.split(',');
       Validator.validateCarNames(splitNames);
-        
+
       // 사용자에게 경주 횟수 입력 받기
       const inputRound = await this.#inputView.inputRound();
     
@@ -32,7 +32,7 @@ class RaceController {
       // 경주 시작
       for (let round = 0; round < inputRound; round++) {
         this.#race.playRound();
-        const roundResult = this.#race.getCars(); // 각 자동차의 현재 위치, 이름을 받아옴
+        const roundResult = this.#race.getCars();
 
         const formattedResult = roundResult.map(car => {
           return {

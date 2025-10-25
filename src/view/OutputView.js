@@ -15,7 +15,7 @@ class OutputView {
   }
 
   printError(errorMessage) {
-    Console.print(Message.ERROR_PREFIX + errorMessage);
+    Console.print(errorMessage);
   }
 }
 

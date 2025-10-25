@@ -4,4 +4,6 @@ export const Message = {
     RESULT_PROMPT: '\n실행 결과',
     WINNER_PREFIX: '최종 우승자 : ',
     ERROR_PREFIX: '[ERROR] ',
+    NOT_ALLOW_SPACE: '자동차 이름에 공백이 포함될 수 없습니다.',
+    NOT_ALLOW_NAME_LENGTH: '자동차 이름은 5자를 초과할 수 없습니다.'
 };
