@@ -2,19 +2,9 @@ import { Random } from "@woowacourse/mission-utils";
 
 class Race {
   #cars;
-  #rounds;
 
-  constructor(cars, rounds) { 
+  constructor(cars) { 
     this.#cars = cars;
-    this.#rounds = rounds;
-  }
-
-  playRace() {
-    const playRounds = this.#rounds;
-
-    for (let round = 0; round < playRounds; round++) {
-      this.#playRounds();
-    }
   }
 
   #canMove() {
@@ -22,12 +12,19 @@ class Race {
     return randomNumber >= 4;
   }
 
-  #playRounds() {
+  playRound() {
     this.#cars.forEach(car => {
       if (this.#canMove()) {
         car.move();
       }
     });
+  }
+
+  getRoundResult() {
+    return this.#cars.map(car => ({
+      name: car.getName(),
+      position: car.getPosition(),
+    }));
   }
 }
 

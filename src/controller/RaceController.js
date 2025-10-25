@@ -1,14 +1,17 @@
-import InputView from "../view/InputView";
-import Race from "../model/Race";
+import InputView from "../view/InputView.js";
+import OutputView from "../view/OutputView.js";
+import Race from "../model/Race.js";
 
 class RaceController {
-    #inputView;
-    #splitNames;
-    #race;
+  #inputView;
+  #outputView;
+  #splitNames;
+  #race;
     
   constructor() {
-      this.#inputView = new InputView();
-      this.#race = new Race();
+    this.#inputView = new InputView();
+    this.#outputView = new OutputView();
+    this.#race = new Race();
   }
 
   async start() {
@@ -23,10 +26,18 @@ class RaceController {
       this.#splitNames = inputName.split(',');
       splitCarNames.map(name => name.trim());
       const cars = trimmedNames.map(name => new Car(name));
-      this.#race(cars, inputRound);
+      this.#race(cars);
     
       // 경주 시작
-      this.#race.playRace();
+      for (let round = 0; round < inputRound; round++) {
+        this.#race.playRound();
+        const roundResult = this.#race.getRoundResult(); // 각 자동차의 현재 위치, 이름을 받아옴
+        // position: 1 -> '-' 변환 로직 추가하기
+
+        outputView.printRound(roundResult); // 출력
+      }
+
+      // 우승자 발표
     } catch (error) {
       // 에러 처리
     }
