@@ -2,8 +2,12 @@ import { Console } from '@woowacourse/mission-utils';
 import { Message } from '../constant/index.js';
 
 class OutputView {
-  printRound(roundResult) {
-    Console.print(roundResult);
+  printRound(cars) {
+    const roundOutput = cars.map(car => {
+      return `${car.getName()} : ${'-'.repeat(car.getPosition())}`;
+    }).join('\n');
+    
+    Console.print(roundOutput + '\n');
   }
 
   printResult() {

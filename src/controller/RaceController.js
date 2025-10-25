@@ -33,20 +33,11 @@ class RaceController {
       for (let round = 0; round < inputRound; round++) {
         this.#race.playRound();
         const roundResult = this.#race.getCars();
-
-        const formattedResult = roundResult.map(car => {
-          return {
-            name: car.getName(),
-            position: '-'.repeat(car.getPosition()),
-          };
-        });
-
+        
         if (round == 0) {
           this.#outputView.printResult();
         }
-
-        const roundOutput = formattedResult.map(car => `${car.name} : ${car.position}`).join('\n');
-        this.#outputView.printRound(roundOutput + '\n'); // 출력
+        this.#outputView.printRound(roundResult); // 출력
       }
 
       // 우승자 발표
