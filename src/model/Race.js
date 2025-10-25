@@ -6,9 +6,9 @@ class Race {
   #cars;
   #round;
 
-  constructor(cars = []) {
+  constructor(cars, round) {
     this.#cars = cars;
-    this.#round = 0;
+    this.#round = round;
   }
 
   #canMove() {

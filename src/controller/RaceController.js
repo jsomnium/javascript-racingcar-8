@@ -30,14 +30,14 @@ class RaceController {
     const inputName = await this.#inputView.inputName();
     const splitNames = inputName.split(',');
     Validator.validateCarNames(splitNames);
-
-    // 입력받은 자동차 이름을 분리
     const cars = splitNames.map(name => new Car(name));
-    this.#race = new Race(cars);
 
     // 사용자에게 경주 횟수 입력 받기
-    const inputRound = await this.#inputView.inputRound();
+    const inputRoundString = await this.#inputView.inputRound();
+    const inputRound = Number(inputRoundString);
     Validator.validateRound(inputRound);
+
+    this.#race = new Race(cars, inputRound);
   }
 
   #runRace() {
@@ -46,7 +46,7 @@ class RaceController {
     for (let round = 0; round < this.#race.getRound(); round++) {
       this.#race.playRound();
       const roundResult = this.#race.getCars();
-      this.#outputView.printRound(roundResult); // 출력
+      this.#outputView.printRound(roundResult);
     }
   }
 

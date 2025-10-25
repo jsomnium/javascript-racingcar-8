@@ -16,11 +16,11 @@ class Validator {
     if (isNaN(round)) {
       throw new Error(Message.ERROR_PREFIX + Message.NOT_ALLOW_TYPE);
     }
-    if (Number(round) <= 0) {
+    if (round <= 0) {
       throw new Error(Message.ERROR_PREFIX + Message.NOT_ALLOW_NEGATIVE);
     }
-    if (!Number.isInteger(Number(round))) {
-        throw new Error(Message.ERROR_PREFIX + Message.NOT_ALLOW_RATIONAL);
+    if (!Number.isInteger(round)) {
+      throw new Error(Message.ERROR_PREFIX + Message.NOT_ALLOW_RATIONAL);
     }
   }
 }
