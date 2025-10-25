@@ -2,9 +2,14 @@ import { Console } from '@woowacourse/mission-utils';
 import { Message } from '../constant/index.js';
 
 class InputView {
-  async input() {
-    const inputString = await Console.readLineAsync(Message.INPUT_PROMPT);
+  async inputName() {
+    const inputString = await Console.readLineAsync(Message.NAME_PROMPT);
     return inputString;
+  }
+
+  async inputRounds() {
+    const roundsString = await Console.readLineAsync(Message.ROUNDS_PROMPT);
+    return roundsString;
   }
 }
 
