@@ -3,4 +3,5 @@ export const Message = {
     ROUNDS_PROMPT: '시도할 횟수는 몇 회인가요?\n',
     RESULT_PROMPT: '\n실행 결과',
     WINNER_PREFIX: '최종 우승자 : ',
+    ERROR_PREFIX: '[ERROR] ',
 };

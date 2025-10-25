@@ -2,6 +2,7 @@ import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import Race from "../model/Race.js";
 import Car from "../model/Car.js";
+import Validator from "../utils/Validator.js";
 
 class RaceController {
   #inputView;
@@ -18,14 +19,14 @@ class RaceController {
     try {
       // 사용자에게 자동차 이름 입력 받기
       const inputName = await this.#inputView.inputName();
+      const splitNames = inputName.split(',');
+      Validator.validateCarNames(splitNames);
         
       // 사용자에게 경주 횟수 입력 받기
       const inputRound = await this.#inputView.inputRound();
     
       // 입력받은 자동차 이름을 분리하여 Race 모델에 전달
-      const splitNames = inputName.split(',');
-      const trimmedNames = splitNames.map(name => name.trim());
-      const cars = trimmedNames.map(name => new Car(name));
+      const cars = splitNames.map(name => new Car(name));
       this.#race.addCars(cars);
     
       // 경주 시작
@@ -53,7 +54,8 @@ class RaceController {
       const winnerNames = winners.join(', ');
       this.#outputView.printWinners(winnerNames);
     } catch (error) {
-      // 에러 처리
+      this.#outputView.printError(error.message);
+      throw error;
     }
   }
 }

@@ -13,6 +13,10 @@ class OutputView {
   printWinners(winners) {
     Console.print(Message.WINNER_PREFIX + winners);
   }
+
+  printError(errorMessage) {
+    Console.print(Message.ERROR_PREFIX + errorMessage);
+  }
 }
 
 export default OutputView;
