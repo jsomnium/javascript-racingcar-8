@@ -3,7 +3,7 @@ import { Random } from "@woowacourse/mission-utils";
 class Race {
   #cars;
 
-  constructor(cars) { 
+  addCars(cars) {
     this.#cars = cars;
   }
 
@@ -13,18 +13,15 @@ class Race {
   }
 
   playRound() {
-    this.#cars.forEach(car => {
+    this.#cars.map(car => {
       if (this.#canMove()) {
         car.move();
       }
     });
   }
 
-  getRoundResult() {
-    return this.#cars.map(car => ({
-      name: car.getName(),
-      position: car.getPosition(),
-    }));
+  getCars() {
+    return this.#cars;
   }
 }
 

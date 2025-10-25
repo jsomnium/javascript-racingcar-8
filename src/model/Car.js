@@ -19,3 +19,5 @@ class Car {
     return this.#position;
   }
 }
+
+export default Car;

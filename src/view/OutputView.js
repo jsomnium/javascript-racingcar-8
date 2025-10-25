@@ -1,8 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
+import { Message } from '../constant/index.js';
 
 class OutputView {
-  printRound(message) {
-    Console.print(message);
+  printRound(roundResult) {
+    Console.print(roundResult);
+  }
+
+  printResult() {
+    Console.print(Message.RESULT_PROMPT);
   }
 }
 
