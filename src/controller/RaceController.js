@@ -14,16 +14,16 @@ class RaceController {
   async start() {
     try {
       // 사용자에게 자동차 이름 입력 받기
-      const inputString = await this.#inputView.inputName();
+      const inputName = await this.#inputView.inputName();
         
       // 사용자에게 경주 횟수 입력 받기
-      const rounds = await this.#inputView.inputRounds();
+      const inputrounds = await this.#inputView.inputRounds();
     
       // 입력받은 자동차 이름을 분리하여 Race 모델에 전달
-      this.#splitNames = inputString.split(',');
+      this.#splitNames = inputName.split(',');
       splitCarNames.map(name => name.trim());
       const cars = trimmedNames.map(name => new Car(name));
-      this.#race(cars);
+      this.#race(cars, inputrounds);
     
     } catch (error) {
       // 에러 처리
